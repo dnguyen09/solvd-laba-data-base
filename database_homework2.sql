@@ -118,8 +118,15 @@ INSERT INTO `solvd_laba_olympic`.`athletes` (`athlete_id`, `athlete_name`, `gend
 INSERT INTO `solvd_laba_olympic`.`athletes` (`athlete_id`, `athlete_name`, `gender`, `age`, `team_id`) VALUES ('14', 'Andres Hernandez', 'male', '30', '4');
 INSERT INTO `solvd_laba_olympic`.`athletes` (`athlete_id`, `athlete_name`, `gender`, `age`, `team_id`) VALUES ('15', 'Lucas Hansen', 'male', '30', '3');
 INSERT INTO `solvd_laba_olympic`.`athletes` (`athlete_id`, `athlete_name`, `gender`, `age`, `team_id`) VALUES ('16', 'Juan Ramirez', 'male', '25', '4');
+INSERT INTO `solvd_laba_olympic`.`athletes` (`athlete_id`, `athlete_name`, `gender`, `age`, `team_id`) VALUES ('17', 'Andre Alyna', 'female', '24', '7');
+INSERT INTO `solvd_laba_olympic`.`athletes` (`athlete_id`, `athlete_name`, `gender`, `age`, `team_id`) VALUES ('18', 'Babineaux Chloe', 'female', '23', '7');
 
-        
+INSERT INTO `solvd_laba_olympic`.`broadcasting_schedule` (`broadcast_id`, `channel`, `broadcast_date`, `start_time`, `end_time`, `even_id`) VALUES ('1', 'Velocity Sports', '2012-07-13', '10:00:00', '12:00:00', '4');
+INSERT INTO `solvd_laba_olympic`.`broadcasting_schedule` (`broadcast_id`, `channel`, `broadcast_date`, `start_time`, `end_time`, `even_id`) VALUES ('2', 'Stellar TV', '2012-07-28', '09:00:00', '11:30:00', '11');
+INSERT INTO `solvd_laba_olympic`.`broadcasting_schedule` (`broadcast_id`, `channel`, `broadcast_date`, `start_time`, `end_time`, `even_id`) VALUES ('3', 'Peak Sports', '2012-08-01', '14:00:00', '17:00:00', '6');
+INSERT INTO `solvd_laba_olympic`.`broadcasting_schedule` (`broadcast_id`, `channel`, `broadcast_date`, `start_time`, `end_time`, `even_id`) VALUES ('4', 'Horizon Network', '2012-07-13', '10:00:00', '12:00:00', '4');
+INSERT INTO `solvd_laba_olympic`.`broadcasting_schedule` (`broadcast_id`, `channel`, `broadcast_date`, `start_time`, `end_time`, `even_id`) VALUES ('5', 'Aurora Sports', '2012-08-01', '11:30:00', '13:30:00', '12');
+
 -- Updating statment
 
 UPDATE `solvd_laba_olympic`.`locations` SET `capacity` = '10000' WHERE (`location_id` = '5');
@@ -131,6 +138,30 @@ UPDATE `solvd_laba_olympic`.`locations` SET `capacity` = '5000' WHERE (`location
 UPDATE `solvd_laba_olympic`.`locations` SET `capacity` = '6000' WHERE (`location_id` = '10');
 UPDATE `solvd_laba_olympic`.`locations` SET `capacity` = '3000' WHERE (`location_id` = '11');
 UPDATE `solvd_laba_olympic`.`locations` SET `capacity` = '1000' WHERE (`location_id` = '12');
+
+UPDATE `solvd_laba_olympic`.`competitions` SET `athlete_id` = '9', `event_id` = '4' WHERE (`compete_id` = '1');
+UPDATE `solvd_laba_olympic`.`competitions` SET `athlete_id` = '12', `event_id` = '6' WHERE (`compete_id` = '2');
+UPDATE `solvd_laba_olympic`.`competitions` SET `athlete_id` = '17', `event_id` = '4' WHERE (`compete_id` = '3');
+UPDATE `solvd_laba_olympic`.`competitions` SET `athlete_id` = '18', `event_id` = '6' WHERE (`compete_id` = '4');
+UPDATE `solvd_laba_olympic`.`competitions` SET `team_id` = '4', `event_id` = '8' WHERE (`compete_id` = '6');
+UPDATE `solvd_laba_olympic`.`competitions` SET `athlete_id` = '1', `event_id` = '11' WHERE (`compete_id` = '7');
+UPDATE `solvd_laba_olympic`.`competitions` SET `athlete_id` = '2', `event_id` = '12' WHERE (`compete_id` = '8');
+UPDATE `solvd_laba_olympic`.`competitions` SET `athlete_id` = '4', `event_id` = '11' WHERE (`compete_id` = '9');
+UPDATE `solvd_laba_olympic`.`competitions` SET `athlete_id` = '6', `event_id` = '12' WHERE (`compete_id` = '10');
+UPDATE `solvd_laba_olympic`.`competitions` SET `team_id` = '3', `event_id` = '8' WHERE (`compete_id` = '5');
+
+UPDATE `solvd_laba_olympic`.`teams` SET `team_name` = 'Athletic Team' WHERE (`team_id` = '7');
+
+INSERT INTO `solvd_laba_olympic`.`results` (`result_id`, `medal`, `event_id`, `athlete_id`) VALUES ('1', 'Gold', '4', '9');
+INSERT INTO `solvd_laba_olympic`.`results` (`result_id`, `medal`, `event_id`, `athlete_id`) VALUES ('2', 'Silver', '4', '17');
+INSERT INTO `solvd_laba_olympic`.`results` (`result_id`, `medal`, `event_id`, `athlete_id`) VALUES ('3', 'Bronze', '6', '18');
+INSERT INTO `solvd_laba_olympic`.`results` (`result_id`, `medal`, `event_id`, `athlete_id`) VALUES ('4', 'Gold', '6', '12');
+INSERT INTO `solvd_laba_olympic`.`results` (`result_id`, `medal`, `event_id`, `team_id`) VALUES ('5', 'Silver', '8', '3');
+INSERT INTO `solvd_laba_olympic`.`results` (`result_id`, `medal`, `event_id`, `team_id`) VALUES ('6', 'Gold', '8', '4');
+INSERT INTO `solvd_laba_olympic`.`results` (`result_id`, `medal`, `event_id`, `athlete_id`) VALUES ('7', 'Gold', '12', '4');
+INSERT INTO `solvd_laba_olympic`.`results` (`result_id`, `medal`, `event_id`, `athlete_id`) VALUES ('8', 'Silver', '11', '1');
+INSERT INTO `solvd_laba_olympic`.`results` (`result_id`, `medal`, `event_id`, `athlete_id`) VALUES ('9', 'Bronze', '12', '6');
+
 
 -- Alter table
 ALTER TABLE events
@@ -218,11 +249,12 @@ FROM cities LEFT JOIN locations
 ON cities.city_id = locations.city_id
 WHERE locations.location_name IS NULL;
 
-SELECT events.event_name, teams.team_name, nations.nation_name
+SELECT events.event_name, teams.team_name, athletes.athlete_name, teams.team_id
 FROM events
 LEFT JOIN competitions ON events.event_id = competitions.event_id
 LEFT JOIN teams ON competitions.team_id = teams.team_id
-LEFT JOIN nations ON teams.nation_id = nations.nation_id;
+LEFT JOIN nations ON teams.nation_id = nations.nation_id
+LEFT JOIN athletes ON athletes.athlete_id = competitions.athlete_id;
 
 -- RIGHT JOIN
 SELECT *
@@ -244,6 +276,25 @@ SELECT teams.team_name, nations.nation_name, hotels.hotel_name
 FROM teams
 RIGHT JOIN hotels ON teams.hotel_id = hotels.hotel_id
 LEFT JOIN nations ON teams.nation_id = nations.nation_id;
+
+-- JOIN all tables
+
+SELECT 	athletes.athlete_id, athletes.athlete_name, athletes.gender, teams.team_id,
+		teams.team_name, hotels.hotel_name, cities.city_name, nations.nation_name, 
+        sports.sport_name, channel, broadcast_date, start_time, end_time,
+        events.event_name, events.event_id, events.start_date, events.end_date, 
+        locations.location_name, locations.capacity, results.medal
+FROM athletes
+JOIN teams ON athletes.team_id = teams.team_id
+JOIN nations ON nations.nation_id = teams.nation_id
+LEFT JOIN competitions ON athletes.athlete_id = competitions.athlete_id
+LEFT JOIN events ON events.event_id = competitions.event_id
+LEFT JOIN results ON results.athlete_id = athletes.athlete_id
+LEFT JOIN sports ON sports.sport_id = events.sport_id
+LEFT JOIN hotels ON teams.hotel_id = hotels.hotel_id
+LEFT JOIN cities ON cities.city_id = hotels.city_id
+LEFT JOIN locations ON locations.location_id = events.location_id
+LEFT JOIN broadcasting_schedule ON events.event_id = broadcasting_schedule.even_id;
 
 -- AGREGATION WITHOU HAVING
 
@@ -267,7 +318,9 @@ SELECT city_id, COUNT(location_name) as total_locations
 FROM locations
 GROUP BY city_id;
 
-
+SELECT city_id, COUNT(hotel_name) as number_hotels
+FROM hotels
+GROUP BY city_id;
 
 
 -- GROUP BY WITH HAVING
@@ -286,4 +339,21 @@ SELECT city_id, AVG(capacity) AS average_capacity
 FROM locations
 GROUP BY city_id
 HAVING average_capacity IS NOT NULL;
+
+SELECT city_id, COUNT(location_name) as total_locations
+FROM locations
+GROUP BY city_id
+HAVING total_locations = 1;
+
+SELECT athlete_name, age
+FROM athletes
+GROUP BY athlete_name, age
+HAVING age = (SELECT MAX(age) FROM athletes);
+
+SELECT location_name, capacity
+FROM locations
+GROUP BY location_name, capacity
+HAVING capacity = (SELECT MIN(capacity) FROM locations);
+
+
 
