@@ -1,6 +1,6 @@
 package com.solvd.laba.model;
 
-public class Sports {
+public class Sport {
     //Fields
     private int sportId;
     private String sportName;

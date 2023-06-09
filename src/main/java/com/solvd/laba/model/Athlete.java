@@ -1,14 +1,28 @@
 package com.solvd.laba.model;
 
-public class Athletes {
+public class Athlete {
     //Fields
     private int athleteId;
     private String athleteName;
     private String gender;
     private int age;
-    private int teamId;
+    private Team team;
 
-    //setters and getters
+    //constructor
+    public Athlete(int athleteId, String athleteName, String gender, int age, Team team) {
+        this.athleteId = athleteId;
+        this.athleteName = athleteName;
+        this.gender = gender;
+        this.age = age;
+        this.team = team;
+    }
+
+    public Athlete() {
+
+    }
+
+    //getters and setters
+
     public int getAthleteId() {
         return athleteId;
     }
@@ -41,22 +55,22 @@ public class Athletes {
         this.age = age;
     }
 
-    public int getTeamId() {
-        return teamId;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setTeamId(int teamId) {
-        this.teamId = teamId;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 
     @Override
     public String toString() {
-        return "Athletes{" +
-                "athleteId=" + athleteId +
-                ", athleteName='" + athleteName + '\'' +
+        return "Athlete{" +
+                "athlete_id=" + athleteId +
+                ", athlete_name='" + athleteName + '\'' +
                 ", gender='" + gender + '\'' +
                 ", age=" + age +
-                ", teamId=" + teamId +
+                ", team_id=" + team.getTeamId() +
                 '}' + "\n";
     }
 }

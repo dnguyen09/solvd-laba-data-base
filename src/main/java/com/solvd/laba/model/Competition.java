@@ -1,6 +1,6 @@
 package com.solvd.laba.model;
 
-public class Competitions {
+public class Competition {
     //Fields
     private int competeId;
     private int athleteId;

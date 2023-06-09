@@ -1,14 +1,25 @@
 package com.solvd.laba.model;
 
-public class Locations {
+public class Location {
     //Fields
     private int locationId;
     private String locationName;
     private Integer capacity;
-    private int cityId;
+    private City city;
+
+    //constructors
+
+    public Location(int locationId, String locationName, Integer capacity, City city) {
+        this.locationId = locationId;
+        this.locationName = locationName;
+        this.capacity = capacity;
+        this.city = city;
+    }
+
+    public Location() {
+    }
 
     //getters and setters
-
     public int getLocationId() {
         return locationId;
     }
@@ -33,22 +44,21 @@ public class Locations {
         this.capacity = capacity;
     }
 
-    public int getCityId() {
-        return cityId;
+    public City getCity() {
+        return city;
     }
 
-    public void setCityId(int cityId) {
-        this.cityId = cityId;
+    public void setCity(City city) {
+        this.city = city;
     }
-
 
     @Override
     public String toString() {
-        return "Locations{" +
+        return "Location{" +
                 "locationId=" + locationId +
                 ", locationName='" + locationName + '\'' +
                 ", capacity=" + capacity +
-                ", cityId=" + cityId +
+                ", city=" + city.getCityId() +
                 '}' + "\n";
     }
 }

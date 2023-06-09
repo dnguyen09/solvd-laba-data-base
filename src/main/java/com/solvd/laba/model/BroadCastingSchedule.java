@@ -10,9 +10,24 @@ public class BroadCastingSchedule {
     private LocalDate broadCastDate;
     private LocalTime startTime;
     private LocalTime endTime;
-    private int eventId;
+    private Event event;
+
+    //constructors
+
+    public BroadCastingSchedule(int broadCastId, String channel, LocalDate broadCastDate, LocalTime startTime, LocalTime endTime, Event event) {
+        this.broadCastId = broadCastId;
+        this.channel = channel;
+        this.broadCastDate = broadCastDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.event = event;
+    }
+
+    public BroadCastingSchedule() {
+    }
 
     //setters and getters
+
     public int getBroadCastId() {
         return broadCastId;
     }
@@ -53,12 +68,12 @@ public class BroadCastingSchedule {
         this.endTime = endTime;
     }
 
-    public int getEventId() {
-        return eventId;
+    public Event getEvent() {
+        return event;
     }
 
-    public void setEventId(int eventId) {
-        this.eventId = eventId;
+    public void setEvent(Event event) {
+        this.event = event;
     }
 
     @Override
@@ -69,7 +84,7 @@ public class BroadCastingSchedule {
                 ", broadCastDate=" + broadCastDate +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
-                ", eventId=" + eventId +
+                ", event=" + event.getEventId() +
                 '}' + "\n";
     }
 }

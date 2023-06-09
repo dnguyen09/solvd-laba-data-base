@@ -1,6 +1,6 @@
 package com.solvd.laba.model;
 
-public class Nations {
+public class Nation {
     //Fields
     private int nationId;
     private String nationName;

@@ -21,7 +21,7 @@ public class ConnectionUtil {
         try (InputStream inputStream = new FileInputStream("src/main/resources/database.properties")) {
             prop.load(inputStream);
 
-            //get from properties file
+            //get values from properties file
             String dbUrl = prop.getProperty("db.url");
             String dbUserName = prop.getProperty("db.username");
             String dbPassword = prop.getProperty("db.password");

@@ -9,10 +9,23 @@ public class HostCountry {
     private String continent;
     private String capitalCity;
     private Year yearOfHost;
-    private int iocId;
+    private InternationalOlympicCommitee ioc;
+
+    //constructors
+
+    public HostCountry(int hostCountryId, String countryName, String continent, String capitalCity, Year yearOfHost, InternationalOlympicCommitee ioc) {
+        this.hostCountryId = hostCountryId;
+        this.countryName = countryName;
+        this.continent = continent;
+        this.capitalCity = capitalCity;
+        this.yearOfHost = yearOfHost;
+        this.ioc = ioc;
+    }
+
+    public HostCountry() {
+    }
 
     //setters and getters
-
     public int getHostCountryId() {
         return hostCountryId;
     }
@@ -53,22 +66,23 @@ public class HostCountry {
         this.yearOfHost = yearOfHost;
     }
 
-    public int getIocId() {
-        return iocId;
+    public InternationalOlympicCommitee getIoc() {
+        return ioc;
     }
 
-    public void setIocId(int iocId) {
-        this.iocId = iocId;
+    public void setIoc(InternationalOlympicCommitee ioc) {
+        this.ioc = ioc;
     }
 
     @Override
     public String toString() {
-        return "hostCountry{" +
+        return "HostCountry{" +
                 "hostCountryId=" + hostCountryId +
                 ", countryName='" + countryName + '\'' +
                 ", continent='" + continent + '\'' +
                 ", capitalCity='" + capitalCity + '\'' +
                 ", yearOfHost=" + yearOfHost +
-                ", iocId=" + iocId + '}' + "\n";
+                ", ioc=" + ioc.getIocId() +
+                '}' + "\n";
     }
 }

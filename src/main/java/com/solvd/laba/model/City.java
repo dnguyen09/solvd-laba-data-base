@@ -1,27 +1,24 @@
 package com.solvd.laba.model;
 
-public class Cities {
+public class City {
 
     //Fields
     private int cityId;
     private String cityName;
-    private int hostCountryId;
+    private HostCountry hostCountry;
 
     //constructors
-
-    public Cities(int cityId, String cityName, int hostCountryId) {
+    public City(int cityId, String cityName, HostCountry hostCountry) {
         this.cityId = cityId;
         this.cityName = cityName;
-        this.hostCountryId = hostCountryId;
+        this.hostCountry = hostCountry;
     }
 
-    public Cities() {
+    public City() {
 
     }
-
 
     //setters and getters
-
     public int getCityId() {
         return cityId;
     }
@@ -38,20 +35,22 @@ public class Cities {
         this.cityName = cityName;
     }
 
-    public int getHostCountryId() {
-        return hostCountryId;
+    public HostCountry getHostCountry() {
+        return hostCountry;
     }
 
-    public void setHostCountryId(int hostCountryId) {
-        this.hostCountryId = hostCountryId;
+    public void setHostCountry(HostCountry hostCountry) {
+        this.hostCountry = hostCountry;
     }
 
     @Override
     public String toString() {
-        return "Cities{" +
+        return "City{" +
                 "cityId=" + cityId +
                 ", cityName='" + cityName + '\'' +
-                ", hosyCountryId=" + hostCountryId +
+                ", hostCountry=" + hostCountry.getHostCountryId() +
                 '}' + "\n";
     }
 }
+
+

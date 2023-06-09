@@ -1,7 +1,10 @@
 package com.solvd.laba.daoInterfaces;
 
 import com.solvd.laba.dao.DAO;
-import com.solvd.laba.model.Teams;
+import com.solvd.laba.model.Team;
 
-public interface TeamsDAO extends DAO<Teams> {
+import java.util.List;
+
+public interface TeamsDAO extends DAO<Team> {
+    List<Team> getTeamByNationId(int id);
 }
