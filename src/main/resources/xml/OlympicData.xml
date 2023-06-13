@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<olympicData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="OlympicData.xsd">
+    <hostCountry>
+        <hostCountryId>1</hostCountryId>
+        <countryName>United Kingdom</countryName>
+        <continent>Europe</continent>
+        <capitalCity>London</capitalCity>
+        <yearOfHost>2012</yearOfHost>
+        <InternationalOlympicCommitee>
+            <iocId>1</iocId>
+            <iocName>International Olympic Commitee</iocName>
+            <president>Thomas Bach</president>
+            <headQuater>Lausanne, Switzerland</headQuater>
+            <yearEstablished>1894</yearEstablished>
+        </InternationalOlympicCommitee>
+    </hostCountry>
+    <city>
+        <cityId>1</cityId>
+        <cityName>London</cityName>
+    </city>
+    <athlete>
+        <athleteId>1</athleteId>
+        <athleteName>Jordan Williams</athleteName>
+        <gender>male</gender>
+        <age>23</age>
+        <Team>
+            <teamId>1</teamId>
+            <teamName>Athletic Team</teamName>
+            <nation>
+                <nationId>1</nationId>
+                <nationName>Australia</nationName>
+                <region>Oceania</region>
+            </nation>
+            <hotel>
+                <hotelId>1</hotelId>
+                <hotelName>Grand Plaza</hotelName>
+            </hotel>
+        </Team>
+    </athlete>
+    <event>
+        <eventId>1</eventId>
+        <eventName>Parallel Bars</eventName>
+        <startDate>2012-07-14</startDate>
+        <endDate>2012-07-15</endDate>
+        <sport>
+            <sportId>1</sportId>
+            <sportName>Athletics</sportName>
+        </sport>
+        <location>
+            <locationId>1</locationId>
+            <locationName>Olympic Stadium</locationName>
+            <capacity>80000</capacity>
+            <City>
+                <cityId>1</cityId>
+                <cityName>London</cityName>
+            </City>
+        </location>
+        <teams>
+            <team>
+                <teamId>1</teamId>
+                <teamName>Athletic Team</teamName>
+                <Nation>
+                    <nationId>1</nationId>
+                    <nationName>Australia</nationName>
+                    <region>Ocenia</region>
+                </Nation>
+            </team>
+            <team>
+                <teamId>2</teamId>
+                <teamName>Basketball Team</teamName>
+                <Nation>
+                    <nationId>10</nationId>
+                    <nationName>Denmark</nationName>
+                    <region>Northern Europe</region>
+                </Nation>
+            </team>
+        </teams>
+    </event>
+</olympicData>

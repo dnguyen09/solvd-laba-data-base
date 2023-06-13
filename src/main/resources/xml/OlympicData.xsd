@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="olympicData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="hostCountry">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="hostCountryId" type="xs:int"/>
+                            <xs:element name="countryName" type="xs:string"/>
+                            <xs:element name="continent" type="xs:string"/>
+                            <xs:element name="capitalCity" type="xs:string"/>
+                            <xs:element name="yearOfHost" type="xs:gYear"/>
+                            <xs:element name="InternationalOlympicCommitee">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="iocId" type="xs:int"/>
+                                        <xs:element name="iocName" type="xs:string"/>
+                                        <xs:element name="president" type="xs:string"/>
+                                        <xs:element name="headQuater" type="xs:string"/>
+                                        <xs:element name="yearEstablished" type="xs:int"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="city">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="cityId" type="xs:int"/>
+                            <xs:element name="cityName" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="athlete">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="athleteId" type="xs:int"/>
+                            <xs:element name="athleteName" type="xs:string"/>
+                            <xs:element name="gender" type="xs:string"/>
+                            <xs:element name="age" type="xs:int"/>
+                            <xs:element name="Team">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="teamId" type="xs:int"/>
+                                        <xs:element name="teamName" type="xs:string"/>
+                                        <xs:element name="nation">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="nationId" type="xs:int"/>
+                                                    <xs:element name="nationName" type="xs:string"/>
+                                                    <xs:element name="region" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="hotel">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="hotelId" type="xs:int"/>
+                                                    <xs:element name="hotelName" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="event">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="eventId" type="xs:int"/>
+                            <xs:element name="eventName" type="xs:string"/>
+                            <xs:element name="startDate" type="xs:date"/>
+                            <xs:element name="endDate" type="xs:date"/>
+                            <xs:element name="sport">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="sportId" type="xs:int"/>
+                                        <xs:element name="sportName" type="xs:string"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="location">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="locationId" type="xs:int"/>
+                                        <xs:element name="locationName" type="xs:string"/>
+                                        <xs:element name="capacity" type="xs:int"/>
+                                        <xs:element name="City">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="cityId" type="xs:int"/>
+                                                    <xs:element name="cityName" type="xs:string"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="teams">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="team" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="teamId" type="xs:int"/>
+                                                    <xs:element name="teamName" type="xs:string"/>
+                                                    <xs:element name="Nation">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="nationId" type="xs:int"/>
+                                                                <xs:element name="nationName" type="xs:string"/>
+                                                                <xs:element name="region" type="xs:string"/>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

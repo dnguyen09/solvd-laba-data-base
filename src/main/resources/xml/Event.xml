@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<event>
+    <eventId>1</eventId>
+    <eventName>Parallel Bars</eventName>
+    <startDate>2012-07-14</startDate>
+    <endDate>2012-07-15</endDate>
+    <sport>
+        <sportId>1</sportId>
+        <sportName>Athletics</sportName>
+    </sport>
+    <location>
+        <locationId>1</locationId>
+        <locationName>Olympic Stadium</locationName>
+        <capacity>80000</capacity>
+        <city>
+            <cityId>1</cityId>
+            <cityName>London</cityName>
+        </city>
+    </location>
+    <teams>
+        <team>
+            <teamId>1</teamId>
+            <teamName>Athletic Team</teamName>
+            <nation>
+                <nationId>1</nationId>
+                <nationName>Australia</nationName>
+                <region>Oceania</region>
+            </nation>
+        </team>
+        <team>
+            <teamId>2</teamId>
+            <teamName>Basketball Team</teamName>
+            <nation>
+                <nationId>10</nationId>
+                <nationName>Denmark</nationName>
+                <region>Northern Europe</region>
+            </nation>
+        </team>
+    </teams>
+</event>
