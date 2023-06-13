@@ -1,10 +1,24 @@
 package com.solvd.laba.lab1.model;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlTransient;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Team {
     //Fields
+
+    @XmlElement(name = "teamId")
     private int teamId;
+
+    @XmlElement(name = "teamName")
     private String teamName;
+
+    @XmlElement(name = "nation")
     private Nation nation;
+
+    @XmlTransient
     private Hotel hotel;
 
     //constructors

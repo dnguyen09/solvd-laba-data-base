@@ -1,10 +1,24 @@
 package com.solvd.laba.lab1.model;
 
+
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Location {
     //Fields
+
+    @XmlElement(name = "locationId")
     private int locationId;
+
+    @XmlElement(name = "locationName")
     private String locationName;
+
+    @XmlElement(name = "capacity")
     private Integer capacity;
+
+    @XmlElement(name = "city")
     private City city;
 
     //constructors

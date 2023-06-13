@@ -1,8 +1,17 @@
 package com.solvd.laba.lab1.model;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Sport {
     //Fields
+
+    @XmlElement(name = "sportId")
     private int sportId;
+
+    @XmlElement(name = "sportName")
     private String sportName;
 
     //getters and setters

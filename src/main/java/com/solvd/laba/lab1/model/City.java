@@ -1,10 +1,23 @@
 package com.solvd.laba.lab1.model;
 
+
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlTransient;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 public class City {
 
     //Fields
+
+    @XmlElement(name = "cityId")
     private int cityId;
+
+    @XmlElement(name = "cityName")
     private String cityName;
+
+    @XmlTransient
     private HostCountry hostCountry;
 
     //constructors
