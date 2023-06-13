@@ -1,17 +1,40 @@
 package com.solvd.laba.lab1.model;
 
+import com.solvd.laba.lab3.LocalDateAdapter;
+import jakarta.xml.bind.annotation.*;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import java.time.LocalDate;
 import java.util.List;
 
+@XmlRootElement(name = "event")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Event {
     //Fields
+
+    @XmlElement(name = "eventId")
     private int eventId;
+
+    @XmlElement(name = "eventName")
     private String eventName;
+
+    @XmlElement(name = "startDate")
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate startDate;
+
+    @XmlElement(name = "endDate")
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     private LocalDate endDate;
+
+    @XmlElement(name = "sport")
     private Sport sport;
+
+    @XmlElement(name = "location")
     private Location location;
-    List<Team> teams;
+
+    @XmlElementWrapper(name = "teams")
+    @XmlElement(name = "team")
+    private List<Team> teams;
 
     //constructors
 
