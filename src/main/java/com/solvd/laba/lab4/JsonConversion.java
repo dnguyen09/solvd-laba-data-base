@@ -16,8 +16,8 @@ public class JsonConversion {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             EventWrapper eventWrapper = objectMapper.readValue(new File(JSON_PATH), EventWrapper.class);
-            Event deserilizedEvent = eventWrapper.getEvent();
-            LOGGER.info(deserilizedEvent);
+            Event deserializedEvent = eventWrapper.getEvent();
+            LOGGER.info(deserializedEvent);
 
         } catch (IOException e) {
             e.printStackTrace();
