@@ -1,12 +1,10 @@
 package com.solvd.laba.lab1.daoImplementation;
 
 
+import com.solvd.laba.lab1.dao.DAOImpl;
 import com.solvd.laba.lab1.model.HostCountry;
 import com.solvd.laba.lab1.model.InternationalOlympicCommitee;
-import com.solvd.laba.lab1.dao.DAOImpl;
-import com.solvd.laba.lab1.utils.ConnectionUtil;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -73,28 +71,29 @@ public class HostCountryDaoImpl extends DAOImpl<HostCountry> {
     }
 
     public HostCountry getByIocId(int iocId) {
-        HostCountry hc = new HostCountry();
-
-        //establish database connection and preparedStatement
-        try (Connection con = ConnectionUtil.getConnection();
-             PreparedStatement ps = con.prepareStatement("SELECT country_name, IOC_id FROM host_country WHERE IOC_id = ?")) {
-
-            //adding value to ps
-            ps.setInt(1, iocId);
-
-            //initialize resultSet
-            ResultSet rs = ps.executeQuery();
-
-            //loop through rs
-            while (rs.next()) {
-                hc.setCountryName(rs.getString("country_name"));
-                InternationalOlympicCommitee ioc = new InternationalOlympicCommitee();
-                ioc.setIocId(rs.getInt("IOC_id"));
-                hc.setIoc(ioc);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return hc;
+//        HostCountry hc = new HostCountry();
+//
+//        //establish database connection and preparedStatement
+//        try (Connection con = ConnectionUtil.getConnection();
+//             PreparedStatement ps = con.prepareStatement("SELECT country_name, IOC_id FROM host_country WHERE IOC_id = ?")) {
+//
+//            //adding value to ps
+//            ps.setInt(1, iocId);
+//
+//            //initialize resultSet
+//            ResultSet rs = ps.executeQuery();
+//
+//            //loop through rs
+//            while (rs.next()) {
+//                hc.setCountryName(rs.getString("country_name"));
+//                InternationalOlympicCommitee ioc = new InternationalOlympicCommitee();
+//                ioc.setIocId(rs.getInt("IOC_id"));
+//                hc.setIoc(ioc);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return hc;
+        return null;
     }
 }

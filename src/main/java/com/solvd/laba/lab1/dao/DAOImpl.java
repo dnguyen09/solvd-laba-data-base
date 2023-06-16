@@ -10,73 +10,77 @@ public abstract class DAOImpl<T> implements DAO<T> {
 
     @Override
     public T getById(int id) {
-
         T entity = null;
+        Connection con = null;
 
-        //establish database connection and preparedStatement
-        try (Connection con = ConnectionUtil.getConnection();
-             PreparedStatement ps = con.prepareStatement(getByIdSQL())) {
-
-            //adding value to ps
-            ps.setInt(1, id);
-
-            //initialize resultSet
-            ResultSet rs = ps.executeQuery();
-
-            //loop through rs
-            while (rs.next()) {
-
-                entity = buildFromResultSet(rs);
+        try {
+            con = ConnectionUtil.getConnection();
+            try (PreparedStatement ps = con.prepareStatement(getByIdSQL())) {
+                ps.setInt(1, id);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    entity = buildFromResultSet(rs);
+                }
             }
-
-        } catch (SQLException e) {
+        } catch (SQLException | InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            if (con != null) {
+                ConnectionUtil.releaseConnection(con);
+            }
         }
+
         return entity;
     }
 
     @Override
     public List<T> getAll() {
-
         //initialize a list of athlete
         List<T> list = new ArrayList<>();
+        Connection con = null;
 
         //establish database connection and createStatement
-        try (Connection con = ConnectionUtil.getConnection();
-             Statement statement = con.createStatement()) {
+        try {
+            con = ConnectionUtil.getConnection();
+            try (Statement statement = con.createStatement()) {
 
-            //initializes ResultSet
-            ResultSet rs = statement.executeQuery(getSQL());
+                //initializes ResultSet
+                ResultSet rs = statement.executeQuery(getSQL());
 
-            //loop through rs
-            while (rs.next()) {
+                //loop through rs
+                while (rs.next()) {
+                    //add entity to the list
+                    list.add(buildFromResultSet(rs));
+                }
 
-
-                //add entity to the list
-                list.add(buildFromResultSet(rs));
             }
-
-        } catch (SQLException e) {
+        } catch (SQLException | InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            ConnectionUtil.releaseConnection(con);
         }
-
         return list;
     }
 
     @Override
     public int insert(T entity) {
         int result = 0;
+        Connection con = null;
 
         //establish database connection and preparedStatement
-        try (Connection con = ConnectionUtil.getConnection();
-             PreparedStatement ps = con.prepareStatement(getInsertSQL())) {
+        try {
+            con = ConnectionUtil.getConnection();
+            try (PreparedStatement ps = con.prepareStatement(getInsertSQL())) {
 
-            getInsertPS(ps, entity);
+                getInsertPS(ps, entity);
 
-            result = ps.executeUpdate();
+                result = ps.executeUpdate();
 
-        } catch (SQLException e) {
+            }
+        } catch (SQLException | InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            ConnectionUtil.releaseConnection(con);
         }
 
         return result;
@@ -88,15 +92,16 @@ public abstract class DAOImpl<T> implements DAO<T> {
         int result = 0;
 
         //establish database connection and preparedStatement
-        try (Connection con = ConnectionUtil.getConnection();
-             PreparedStatement ps = con.prepareStatement(getUpdateSQL())) {
+        try {
+            Connection con = ConnectionUtil.getConnection();
+            try (PreparedStatement ps = con.prepareStatement(getUpdateSQL())) {
 
-            //call method
-            getUpdatePS(ps, entity);
+                //call method
+                getUpdatePS(ps, entity);
 
-            result = ps.executeUpdate();
-
-        } catch (SQLException e) {
+                result = ps.executeUpdate();
+            }
+        } catch (SQLException | InterruptedException e) {
             e.printStackTrace();
         }
         return result;
@@ -105,18 +110,21 @@ public abstract class DAOImpl<T> implements DAO<T> {
     @Override
     public int delete(int id) {
         int result = 0;
-
+        Connection con = null;
         //establish database connection and preparedStatement
-        try (Connection con = ConnectionUtil.getConnection();
-             PreparedStatement ps = con.prepareStatement(getDeleteSQL())) {
+        try {
+            con = ConnectionUtil.getConnection();
+            try (PreparedStatement ps = con.prepareStatement(getDeleteSQL())) {
 
-            //execute SQL statement using ps
-            ps.setInt(1, id);
+                //execute SQL statement using ps
+                ps.setInt(1, id);
 
-            result = ps.executeUpdate();
-
-        } catch (SQLException e) {
+                result = ps.executeUpdate();
+            }
+        } catch (SQLException | InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            ConnectionUtil.releaseConnection(con);
         }
 
         return result;

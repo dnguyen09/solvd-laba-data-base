@@ -1,0 +1,55 @@
+{
+  "event": {
+    "eventId": "1",
+    "eventName": "Parallel Bars",
+    "startDate": "2012-07-14",
+    "endDate": "2012-07-15",
+    "sport": {
+      "sportId": "1",
+      "sportName": "Athletics"
+    },
+    "location": {
+      "locationId": "1",
+      "locationName": "Olympic Stadium",
+      "capacity": "80000",
+      "city": {
+        "cityId": "1",
+        "cityName": "London"
+      }
+    },
+    "athletes": [
+      {
+        "athleteId": "1",
+        "athleteName": "Jordan Williams",
+        "gender": "male",
+        "age": "23"
+      },
+      {
+        "athleteId": "2",
+        "athleteName": "Liam Johnson",
+        "gender": "male",
+        "age": "28"
+      }
+    ],
+    "teams": [
+      {
+        "teamId": "1",
+        "teamName": "Athletic Team",
+        "nation": {
+          "nationId": "1",
+          "nationName": "Australia",
+          "region": "Oceania"
+        }
+      },
+      {
+        "teamId": "2",
+        "teamName": "Basketball Team",
+        "nation": {
+          "nationId": "10",
+          "nationName": "Denmark",
+          "region": "Northern Europe"
+        }
+      }
+    ]
+  }
+}

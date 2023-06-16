@@ -17,6 +17,20 @@
             <cityName>London</cityName>
         </city>
     </location>
+    <athletes>
+        <athlete>
+            <athleteId>1</athleteId>
+            <athleteName>Jordan Williams</athleteName>
+            <gender>male</gender>
+            <age>23</age>
+        </athlete>
+        <athlete>
+            <athleteId>2</athleteId>
+            <athleteName>Liam Johnson</athleteName>
+            <gender>male</gender>
+            <age>28</age>
+        </athlete>
+    </athletes>
     <teams>
         <team>
             <teamId>1</teamId>

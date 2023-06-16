@@ -68,11 +68,11 @@ public class Location {
 
     @Override
     public String toString() {
-        return "Location{" +
-                "locationId=" + locationId +
-                ", locationName='" + locationName + '\'' +
-                ", capacity=" + capacity +
-                ", city=" + city.getCityId() +
+        return " Location {" +
+                "\n locationId = " + locationId +
+                "\n locationName = '" + locationName + '\'' +
+                "\n capacity = " + capacity +
+                "\n city =" + city +
                 '}' + "\n";
     }
 }

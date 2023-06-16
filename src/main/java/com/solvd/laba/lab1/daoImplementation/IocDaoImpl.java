@@ -1,12 +1,10 @@
 package com.solvd.laba.lab1.daoImplementation;
 
 
-import com.solvd.laba.lab1.model.InternationalOlympicCommitee;
-import com.solvd.laba.lab1.daoInterfaces.IocDao;
 import com.solvd.laba.lab1.dao.DAOImpl;
-import com.solvd.laba.lab1.utils.ConnectionUtil;
+import com.solvd.laba.lab1.daoInterfaces.IocDao;
+import com.solvd.laba.lab1.model.InternationalOlympicCommitee;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -61,25 +59,26 @@ public class IocDaoImpl extends DAOImpl<InternationalOlympicCommitee> implements
 
     @Override
     public InternationalOlympicCommitee getByHostCountryId(int hostCountryId) {
-        InternationalOlympicCommitee ioc = new InternationalOlympicCommitee();
-
-        //establish database connection and preparedStatement
-        try (Connection con = ConnectionUtil.getConnection();
-             PreparedStatement ps = con.prepareStatement("SELECT IOC_id FROM host_country WHERE host_country_id = ?")) {
-
-            //adding value to ps
-            ps.setInt(1, hostCountryId);
-
-            //initialize resultSet
-            ResultSet rs = ps.executeQuery();
-
-            //loop through rs
-            while (rs.next()) {
-                ioc = buildFromResultSet(rs);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return ioc;
+//        InternationalOlympicCommitee ioc = new InternationalOlympicCommitee();
+//
+//        //establish database connection and preparedStatement
+//        try (Connection con = ConnectionUtil.getConnection();
+//             PreparedStatement ps = con.prepareStatement("SELECT IOC_id FROM host_country WHERE host_country_id = ?")) {
+//
+//            //adding value to ps
+//            ps.setInt(1, hostCountryId);
+//
+//            //initialize resultSet
+//            ResultSet rs = ps.executeQuery();
+//
+//            //loop through rs
+//            while (rs.next()) {
+//                ioc = buildFromResultSet(rs);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return ioc;
+        return null;
     }
 }

@@ -34,9 +34,9 @@ public class Sport {
 
     @Override
     public String toString() {
-        return "Sports{" +
-                "sportId=" + sportId +
-                ", sportName='" + sportName + '\'' +
+        return " Sports {" +
+                "\n sportId = " + sportId +
+                "\n sportName = '" + sportName + '\'' +
                 '}' + "\n";
     }
 }

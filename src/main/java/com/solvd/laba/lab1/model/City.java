@@ -58,10 +58,10 @@ public class City {
 
     @Override
     public String toString() {
-        return "City{" +
-                "cityId=" + cityId +
-                ", cityName='" + cityName + '\'' +
-                ", hostCountry=" + hostCountry.getHostCountryId() +
+        return " City {" +
+                " cityId =" + cityId +
+                ", cityName = '" + cityName + '\'' +
+                ", hostCountry = " + hostCountry +
                 '}' + "\n";
     }
 }

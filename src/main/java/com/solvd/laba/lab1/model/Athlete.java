@@ -1,11 +1,24 @@
 package com.solvd.laba.lab1.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Athlete {
     //Fields
+
+    @JsonProperty("athleteId")
     private int athleteId;
+
+    @JsonProperty("athleteName")
     private String athleteName;
+
+    @JsonProperty("gender")
     private String gender;
+
+    @JsonProperty("age")
     private int age;
+
+    @JsonIgnoreProperties
     private Team team;
 
     //constructor
@@ -65,12 +78,12 @@ public class Athlete {
 
     @Override
     public String toString() {
-        return "Athlete{" +
-                "athlete_id=" + athleteId +
-                ", athlete_name='" + athleteName + '\'' +
-                ", gender='" + gender + '\'' +
-                ", age=" + age +
-                ", team_id=" + team.getTeamId() +
+        return "Athlete {" +
+                "\n athlete_id = " + athleteId +
+                ", athlete_name = '" + athleteName + '\'' +
+                ", gender = '" + gender + '\'' +
+                ", age = " + age +
+                ", team_id = " + team +
                 '}' + "\n";
     }
 }

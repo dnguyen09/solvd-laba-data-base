@@ -1,7 +1,7 @@
 package com.solvd.laba.lab1.services;
 
-import com.solvd.laba.lab1.daoImplementation.TeamDaoImpl;
 import com.solvd.laba.lab1.daoImplementation.EventDaoImpl;
+import com.solvd.laba.lab1.daoImplementation.TeamDaoImpl;
 import com.solvd.laba.lab1.model.Event;
 import com.solvd.laba.lab1.model.Team;
 
@@ -22,5 +22,9 @@ public class EventService {
 
         event.setTeams(team);
         return event;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new EventService().getTeam(8));
     }
 }

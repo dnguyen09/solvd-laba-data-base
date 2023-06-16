@@ -68,11 +68,11 @@ public class Team {
 
     @Override
     public String toString() {
-        return "Team{" +
-                "teamId=" + teamId +
-                ", teamName='" + teamName + '\'' +
-                ", nation=" + nation.getNationId() +
-                ", hotel=" + hotel.getHotelId() +
-                '}';
+        return "Team { " +
+                "\n teamId = " + teamId +
+                ", teamName = '" + teamName + '\'' +
+                ", nation = " + nation +
+                ", hotel = " + hotel +
+                '}' + "\n";
     }
 }

@@ -45,10 +45,10 @@ public class Nation {
 
     @Override
     public String toString() {
-        return "Nations{" +
-                "nationId=" + nationId +
-                ", nationName='" + nationName + '\'' +
-                ", region='" + region + '\'' +
+        return " Nations { " +
+                " nationId = " + nationId +
+                ", nationName = '" + nationName + '\'' +
+                ", region = '" + region + '\'' +
                 '}' + "\n";
     }
 }
