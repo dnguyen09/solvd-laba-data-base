@@ -19,7 +19,7 @@ import java.util.List;
 public class XMLParser {
     private static final Logger LOGGER = LogManager.getLogger(XMLParser.class);
 
-    public void XmlEventReader(String xmlPath) throws FileNotFoundException, XMLStreamException {
+    public Event XmlEventReader(String xmlPath) throws FileNotFoundException, XMLStreamException {
         //create instance of XMLInputFactory
         XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
 
@@ -28,6 +28,7 @@ public class XMLParser {
 
         Event event = new Event();
         int currentTeamIndex = 0;
+        int currentAthleteIndex = 0;
 
         while (reader.hasNext()) {
             XMLEvent xmlEvent = reader.nextEvent();
@@ -36,82 +37,66 @@ public class XMLParser {
                 StartElement startElement = xmlEvent.asStartElement();
                 switch (startElement.getName().getLocalPart()) {
                     case "event":
-                        LOGGER.info("Start of event");
                         break;
                     case "eventId":
                         xmlEvent = reader.nextEvent();
                         event.setEventId(Integer.parseInt(xmlEvent.asCharacters().getData()));
-                        LOGGER.info("eventId: " + event.getEventId());
                         break;
                     case "eventName":
                         xmlEvent = reader.nextEvent();
                         event.setEventName(xmlEvent.asCharacters().getData());
-                        LOGGER.info("eventName: " + event.getEventName());
                         break;
                     case "startDate":
                         xmlEvent = reader.nextEvent();
                         event.setStartDate(LocalDate.parse(xmlEvent.asCharacters().getData()));
-                        LOGGER.info("startDate: " + event.getStartDate());
                         break;
                     case "endDate":
                         xmlEvent = reader.nextEvent();
                         event.setEndDate(LocalDate.parse(xmlEvent.asCharacters().getData()));
-                        LOGGER.info("endDate: " + event.getEndDate());
                         break;
                     case "sport":
                         Sport sport = new Sport();
                         event.setSport(sport);
-                        LOGGER.info("Start of sport element");
                         break;
                     case "sportId":
                         xmlEvent = reader.nextEvent();
                         event.getSport().setSportId(Integer.parseInt(xmlEvent.asCharacters().getData()));
-                        LOGGER.info("sportId: " + event.getSport().getSportId());
                         break;
                     case "sportName":
                         xmlEvent = reader.nextEvent();
                         event.getSport().setSportName(xmlEvent.asCharacters().getData());
-                        LOGGER.info("sportName: " + event.getSport().getSportName());
                         break;
                     case "location":
                         Location location = new Location();
                         event.setLocation(location);
-                        LOGGER.info("Start of location element");
                         break;
                     case "locationId":
                         xmlEvent = reader.nextEvent();
                         event.getLocation().setLocationId(Integer.parseInt(xmlEvent.asCharacters().getData()));
-                        LOGGER.info("locationId: " + event.getLocation().getLocationId());
                         break;
                     case "locationName":
                         xmlEvent = reader.nextEvent();
                         event.getLocation().setLocationName(xmlEvent.asCharacters().getData());
-                        LOGGER.info("locationName: " + event.getLocation().getLocationName());
                         break;
                     case "capacity":
                         xmlEvent = reader.nextEvent();
                         event.getLocation().setCapacity(Integer.parseInt(xmlEvent.asCharacters().getData()));
-                        LOGGER.info("capacity: " + event.getLocation().getCapacity());
                         break;
                     case "city":
                         City city = new City();
                         event.getLocation().setCity(city);
-                        LOGGER.info("Start of city element");
                         break;
                     case "cityId":
                         xmlEvent = reader.nextEvent();
                         event.getLocation().getCity().setCityId(Integer.parseInt(xmlEvent.asCharacters().getData()));
-                        LOGGER.info("cityId: " + event.getLocation().getCity().getCityId());
                         break;
                     case "cityName":
                         xmlEvent = reader.nextEvent();
                         event.getLocation().getCity().setCityName(xmlEvent.asCharacters().getData());
-                        LOGGER.info("cityName: " + event.getLocation().getCity().getCityName());
                         break;
                     case "teams":
                         List<Team> teams = new ArrayList<>();
                         event.setTeams(teams);
-                        LOGGER.info("Start of teams element");
                         break;
                     case "team":
                         Team team = new Team();
@@ -121,32 +106,51 @@ public class XMLParser {
                     case "teamId":
                         xmlEvent = reader.nextEvent();
                         event.getTeams().get(currentTeamIndex).setTeamId(Integer.parseInt(xmlEvent.asCharacters().getData()));
-                        LOGGER.info("teamId: " + event.getTeams().get(currentTeamIndex).getTeamId());
                         break;
                     case "teamName":
                         xmlEvent = reader.nextEvent();
                         event.getTeams().get(currentTeamIndex).setTeamName(xmlEvent.asCharacters().getData());
-                        LOGGER.info("teamName: " + event.getTeams().get(currentTeamIndex).getTeamName());
                         break;
                     case "nation":
                         Nation nation = new Nation();
                         event.getTeams().get(currentTeamIndex).setNation(nation);
-                        LOGGER.info("Start of nation element");
                         break;
                     case "nationId":
                         xmlEvent = reader.nextEvent();
                         event.getTeams().get(currentTeamIndex).getNation().setNationId(Integer.parseInt(xmlEvent.asCharacters().getData()));
-                        LOGGER.info("nationId: " + event.getTeams().get(currentTeamIndex).getNation().getNationId());
                         break;
                     case "nationName":
                         xmlEvent = reader.nextEvent();
                         event.getTeams().get(currentTeamIndex).getNation().setNationName(xmlEvent.asCharacters().getData());
-                        LOGGER.info("nationName: " + event.getTeams().get(currentTeamIndex).getNation().getNationName());
                         break;
                     case "region":
                         xmlEvent = reader.nextEvent();
                         event.getTeams().get(currentTeamIndex).getNation().setRegion(xmlEvent.asCharacters().getData());
-                        LOGGER.info("region: " + event.getTeams().get(currentTeamIndex).getNation().getRegion());
+                        break;
+                    case "athletes":
+                        List<Athlete> athletes = new ArrayList<>();
+                        event.setAthletes(athletes);
+                        break;
+                    case "athlete":
+                        Athlete athlete = new Athlete();
+                        event.getAthletes().add(athlete);
+                        currentAthleteIndex = event.getAthletes().size() - 1;
+                        break;
+                    case "athleteId":
+                        xmlEvent = reader.nextEvent();
+                        event.getAthletes().get(currentAthleteIndex).setAthleteId(Integer.parseInt(xmlEvent.asCharacters().getData()));
+                        break;
+                    case "athleteName":
+                        xmlEvent = reader.nextEvent();
+                        event.getAthletes().get(currentAthleteIndex).setAthleteName(xmlEvent.asCharacters().getData());
+                        break;
+                    case "gender":
+                        xmlEvent = reader.nextEvent();
+                        event.getAthletes().get(currentAthleteIndex).setGender(xmlEvent.asCharacters().getData());
+                        break;
+                    case "age":
+                        xmlEvent = reader.nextEvent();
+                        event.getAthletes().get(currentAthleteIndex).setAge(Integer.parseInt(xmlEvent.asCharacters().getData()));
                         break;
                 }
             }
@@ -154,9 +158,10 @@ public class XMLParser {
             if (xmlEvent.isEndElement()) {
                 EndElement endElement = xmlEvent.asEndElement();
                 if (endElement.getName().getLocalPart().equals("event")) {
-                    LOGGER.info("End of event");
+                    LOGGER.info("End of event parsing");
                 }
             }
         }
+        return event;
     }
 }
