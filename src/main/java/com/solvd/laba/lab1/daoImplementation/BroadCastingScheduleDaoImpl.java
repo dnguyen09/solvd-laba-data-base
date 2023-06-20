@@ -1,8 +1,7 @@
 package com.solvd.laba.lab1.daoImplementation;
 
-import com.solvd.laba.lab1.model.BroadCastingSchedule;
-import com.solvd.laba.lab1.model.Event;
 import com.solvd.laba.lab1.dao.DAOImpl;
+import com.solvd.laba.lab1.model.BroadCastingSchedule;
 
 import java.sql.*;
 
@@ -42,11 +41,6 @@ public class BroadCastingScheduleDaoImpl extends DAOImpl<BroadCastingSchedule> {
         schedule.setBroadCastDate(rs.getDate("broadcast_date").toLocalDate());
         schedule.setStartTime(rs.getTime("start_time").toLocalTime());
         schedule.setEndTime(rs.getTime("end_time").toLocalTime());
-
-        // Create Event instance
-        Event event = new Event();
-        event.setEventId(rs.getInt("event_id"));
-        schedule.setEvent(event);
         return schedule;
     }
 

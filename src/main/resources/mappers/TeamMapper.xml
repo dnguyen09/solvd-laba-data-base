@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.laba.lab5.mappers.TeamMapperJava">
+
+    <select id="selectTeamById" resultMap="teamResultMap">
+        select T.*, N.*,H.*
+        from teams T
+        join nations N on N.nation_id = T.nation_id
+        join hotels H on H.hotel_id = T.hotel_id
+        where T.team_id = #{id};
+    </select>
+
+    <resultMap id="teamResultMap" type="com.solvd.laba.lab1.model.Team" autoMapping="false">
+        <id property="teamId" column="team_id"/>
+        <result property="teamName" column="team_name"/>
+        <association property="nation" resultMap="com.solvd.laba.lab5.mappers.NationMapperJava.nationResultMap"/>
+        <association property="hotel" resultMap="com.solvd.laba.lab5.mappers.HotelMapperJava.hotelResultMap"/>
+    </resultMap>
+</mapper>

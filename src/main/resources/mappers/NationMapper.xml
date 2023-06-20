@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.laba.lab5.mappers.NationMapperJava">
+
+    <select id="selectTeamById" resultMap="nationResultMap">
+        select * from nations where nation_id = #{id}
+    </select>
+
+    <resultMap id="nationResultMap" type="com.solvd.laba.lab1.model.Nation" autoMapping="false">
+        <id property="nationId" column="nation_id"/>
+        <result property="nationName" column="nation_name"/>
+        <result property="region" column="region"/>
+    </resultMap>
+</mapper>

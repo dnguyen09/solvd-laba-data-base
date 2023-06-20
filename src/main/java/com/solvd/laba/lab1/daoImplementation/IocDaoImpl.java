@@ -42,7 +42,7 @@ public class IocDaoImpl extends DAOImpl<InternationalOlympicCommitee> implements
         ioc.setIocId(rs.getInt("IOC_id"));
         ioc.setIocName(rs.getString("IOC_name"));
         ioc.setPresident(rs.getString("president"));
-        ioc.setHeadQuater(rs.getString("headquarter"));
+        ioc.setHeadQuarter(rs.getString("headquarter"));
         ioc.setYearEstablished(rs.getInt("year_established"));
         return ioc;
     }

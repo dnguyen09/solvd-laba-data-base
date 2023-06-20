@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.laba.lab5.mappers.AthleteMapperJava">
+
+    <select id="selectAthleteById" resultMap="athleteResultMap">
+        select A.*, T.*
+        from athletes A
+        join teams T on T.team_id = A.team_id
+        where A.athlete_id = #{id};
+    </select>
+
+    <resultMap id="athleteResultMap" type="com.solvd.laba.lab1.model.Athlete" autoMapping="false">
+        <id property="athleteId" column="athlete_id"/>
+        <result property="athleteName" column="athlete_name"/>
+        <result property="gender" column="gender"/>
+        <result property="age" column="age"/>
+        <association property="team" resultMap="com.solvd.laba.lab5.mappers.TeamMapperJava.teamResultMap"/>
+    </resultMap>
+</mapper>

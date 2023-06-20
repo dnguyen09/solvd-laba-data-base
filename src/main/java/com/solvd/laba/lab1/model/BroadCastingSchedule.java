@@ -24,10 +24,10 @@ public class BroadCastingSchedule {
     }
 
     public BroadCastingSchedule() {
+
     }
 
-    //setters and getters
-
+    //getters and setters
     public int getBroadCastId() {
         return broadCastId;
     }
@@ -79,12 +79,12 @@ public class BroadCastingSchedule {
     @Override
     public String toString() {
         return "BroadCastingSchedule{" +
-                "broadCastId=" + broadCastId +
-                ", channel='" + channel + '\'' +
-                ", broadCastDate=" + broadCastDate +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", event=" + event.getEventId() +
-                '}' + "\n";
+                "broadCastId = " + broadCastId +
+                ", channel = '" + channel + '\'' +
+                ", broadCastDate = " + broadCastDate +
+                ", startTime = " + startTime +
+                ", endTime = " + endTime +
+                ", event = " + event +
+                '}';
     }
 }

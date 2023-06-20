@@ -82,7 +82,7 @@ public class HostCountry {
                 ", continent='" + continent + '\'' +
                 ", capitalCity='" + capitalCity + '\'' +
                 ", yearOfHost=" + yearOfHost +
-                ", ioc_id=" + ioc.getIocId() +
+                ", ioc_id=" + ioc +
                 '}' + "\n";
     }
 }

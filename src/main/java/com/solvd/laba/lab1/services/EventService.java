@@ -23,8 +23,4 @@ public class EventService {
         event.setTeams(team);
         return event;
     }
-
-    public static void main(String[] args) {
-        System.out.println(new EventService().getTeam(8));
-    }
 }

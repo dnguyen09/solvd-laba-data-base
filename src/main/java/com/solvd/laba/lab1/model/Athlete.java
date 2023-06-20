@@ -83,7 +83,7 @@ public class Athlete {
                 ", athlete_name = '" + athleteName + '\'' +
                 ", gender = '" + gender + '\'' +
                 ", age = " + age +
-                ", team_id = " + team +
+                ", team = " + team +
                 '}' + "\n";
     }
 }

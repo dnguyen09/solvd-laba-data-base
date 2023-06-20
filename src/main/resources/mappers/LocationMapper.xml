@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.laba.lab5.mappers.LocationMapperJava">
+
+    <select id="selectLocationById" resultMap="LocationResultMap">
+        select * from locations where location_id = #{id}
+    </select>
+
+    <resultMap id="LocationResultMap" type="com.solvd.laba.lab1.model.Location" autoMapping="false">
+        <id property="locationId" column="location_id"/>
+        <result property="locationName" column="location_name"/>
+        <result property="capacity" column="capacity"/>
+        <association property="city" resultMap="com.solvd.laba.lab5.mappers.CityMapperJava.cityResultMap"/>
+    </resultMap>
+</mapper>
