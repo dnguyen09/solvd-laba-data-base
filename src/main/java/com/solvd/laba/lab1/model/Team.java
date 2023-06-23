@@ -33,6 +33,10 @@ public class Team {
 
     }
 
+    public Team(int teamId) {
+        this.teamId = teamId;
+    }
+
     //getters and setters
     public int getTeamId() {
         return teamId;

@@ -13,6 +13,15 @@
         where T.team_id = #{id};
     </select>
 
+    <select id="selectAll" resultMap="teamResultMap">
+        select * from teams;
+    </select>
+
+    <insert id="insertTeam">
+        insert into teams (team_id, team_name, nation_id, hotel_id)
+        values (#{teamId}, #{teamName}, #{nation.nationId}, #{hotel.hotelId})
+    </insert>
+
     <resultMap id="teamResultMap" type="com.solvd.laba.lab1.model.Team" autoMapping="false">
         <id property="teamId" column="team_id"/>
         <result property="teamName" column="team_name"/>

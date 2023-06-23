@@ -14,13 +14,31 @@ public class ConnectionUtil {
     private static final String FILE_PATH = "src/main/resources/properties/database.properties";
     private static final int POOL_SIZE = 7;
     private static BlockingQueue<Connection> connectionPool;
+    private static boolean initialized = false;
 
-    static {
-        initializeConnectionPool();
+    private static synchronized void initializeConnectionPool() {
+        if (!initialized) {
+            connectionPool = new ArrayBlockingQueue<>(POOL_SIZE);
+            createConnection();
+            initialized = true;
+        }
     }
 
-    private static void initializeConnectionPool() {
-        connectionPool = new ArrayBlockingQueue<>(POOL_SIZE);
+    public static Connection getConnection() throws InterruptedException {
+        if (!initialized) {
+            initializeConnectionPool();
+        } else if (connectionPool.size() < POOL_SIZE) {
+            //create a connection and add to connection pool
+            createConnection();
+        }
+        return connectionPool.take();
+    }
+
+    public static void releaseConnection(Connection connection) {
+        connectionPool.offer(connection);
+    }
+
+    public static void createConnection() {
         Properties prop = new Properties();
 
         try (InputStream inputStream = new FileInputStream(FILE_PATH)) {
@@ -30,22 +48,11 @@ public class ConnectionUtil {
             String dbUserName = prop.getProperty("db.username");
             String dbPassword = prop.getProperty("db.password");
 
-            for (int i = 0; i < POOL_SIZE; i++) {
-                Connection connection = DriverManager.getConnection(dbUrl, dbUserName, dbPassword);
-                connectionPool.offer(connection);
-            }
+            //create a connection and add to connection pool
+            Connection connection = DriverManager.getConnection(dbUrl, dbUserName, dbPassword);
+            connectionPool.offer(connection);
         } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
     }
-
-    public static Connection getConnection() throws InterruptedException {
-        return connectionPool.take();
-    }
-
-    public static void releaseConnection(Connection connection) {
-        connectionPool.offer(connection);
-    }
-
-
 }

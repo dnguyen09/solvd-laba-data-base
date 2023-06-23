@@ -12,6 +12,15 @@
         where A.athlete_id = #{id};
     </select>
 
+    <select id="selectAll" resultMap="athleteResultMap">
+        select * from athletes;
+    </select>
+
+    <insert id="insertAthlete">
+        insert into athletes (athlete_id, athlete_name, gender, age, team_id)
+        values (#{athleteId}, #{athleteName}, #{gender}, #{age}, #{team.teamId})
+    </insert>
+
     <resultMap id="athleteResultMap" type="com.solvd.laba.lab1.model.Athlete" autoMapping="false">
         <id property="athleteId" column="athlete_id"/>
         <result property="athleteName" column="athlete_name"/>

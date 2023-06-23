@@ -6,7 +6,9 @@
 <mapper namespace="com.solvd.laba.lab5.mappers.LocationMapperJava">
 
     <select id="selectLocationById" resultMap="LocationResultMap">
-        select * from locations where location_id = #{id}
+        select L.*, C.* from locations L
+        join cities C on C.city_id = L.city_id
+        where L.location_id = #{id}
     </select>
 
     <resultMap id="LocationResultMap" type="com.solvd.laba.lab1.model.Location" autoMapping="false">

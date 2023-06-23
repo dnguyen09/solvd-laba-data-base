@@ -16,7 +16,7 @@ public class EventService {
         this.eventDao = new EventDaoImpl();
     }
 
-    public Event getTeam(int eventId) {
+    public Event getEventById(int eventId) {
         List<Team> team = teamDao.getTeamsByEventId(eventId);
         Event event = eventDao.getById(eventId);
 
