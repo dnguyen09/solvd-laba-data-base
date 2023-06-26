@@ -11,4 +11,8 @@ public interface AthleteMapperJava {
 
     void insertAthlete(Athlete athlete);
 
+    void updateAthlete(Athlete athlete);
+
+    void deleteAthlete(int id);
+
 }
