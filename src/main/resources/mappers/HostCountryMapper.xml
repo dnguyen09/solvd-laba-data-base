@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.laba.lab5.mappers.HostCountryMapperJava">
+
+    <select id="selectHostCountryById" resultMap="HostCountryResultMap">
+        select * from host_country where host_country_id = #{id}
+    </select>
+
+    <resultMap id="HostCountryResultMap" type="com.solvd.laba.lab1.model.HostCountry" autoMapping="false">
+        <id property="hostCountryId" column="host_country_id"/>
+        <result property="countryName" column="country_name"/>
+        <result property="continent" column="continent"/>
+        <result property="capitalCity" column="capital_city"/>
+        <result property="yearOfHost" column="year_of_host"/>
+        <association property="ioc" resultMap="com.solvd.laba.lab5.mappers.IOCMapperJava.iocResultMap"/>
+    </resultMap>
+</mapper>

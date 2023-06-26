@@ -59,7 +59,7 @@ public class City {
     @Override
     public String toString() {
         return " City {" +
-                " cityId =" + cityId +
+                " cityId = " + cityId +
                 ", cityName = '" + cityName + '\'' +
                 ", hostCountry = " + hostCountry +
                 '}' + "\n";

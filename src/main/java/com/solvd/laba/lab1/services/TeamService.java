@@ -18,7 +18,7 @@ public class TeamService {
         this.hotelDao = new HotelDaoImpl();
     }
 
-    public Team getNationAndHotel(int teamId) {
+    public Team getTeamById(int teamId) {
         Nation nation = nationDao.getById(teamId);
         Team team = teamDao.getById(teamId);
         Hotel hotel = hotelDao.getById(teamId);

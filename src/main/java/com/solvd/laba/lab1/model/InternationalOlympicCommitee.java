@@ -6,7 +6,7 @@ public class InternationalOlympicCommitee {
     private int iocId;
     private String iocName;
     private String president;
-    private String headQuater;
+    private String headQuarter;
     private int yearEstablished;
 
     //setters and getters
@@ -35,12 +35,12 @@ public class InternationalOlympicCommitee {
         this.president = president;
     }
 
-    public String getHeadQuater() {
-        return headQuater;
+    public String getHeadQuarter() {
+        return headQuarter;
     }
 
-    public void setHeadQuater(String headQuater) {
-        this.headQuater = headQuater;
+    public void setHeadQuarter(String headQuarter) {
+        this.headQuarter = headQuarter;
     }
 
     public int getYearEstablished() {
@@ -57,7 +57,7 @@ public class InternationalOlympicCommitee {
                 "iocId=" + iocId +
                 ", iocName='" + iocName + '\'' +
                 ", president='" + president + '\'' +
-                ", headQuater='" + headQuater + '\'' +
+                ", headQuater='" + headQuarter + '\'' +
                 ", year_established=" + yearEstablished +
                 '}';
     }

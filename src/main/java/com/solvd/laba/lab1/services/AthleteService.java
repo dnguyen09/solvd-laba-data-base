@@ -1,8 +1,8 @@
 package com.solvd.laba.lab1.services;
 
-import com.solvd.laba.lab1.model.Athlete;
 import com.solvd.laba.lab1.daoImplementation.AthleteDaoImpl;
 import com.solvd.laba.lab1.daoImplementation.TeamDaoImpl;
+import com.solvd.laba.lab1.model.Athlete;
 import com.solvd.laba.lab1.model.Team;
 
 public class AthleteService {
@@ -19,5 +19,6 @@ public class AthleteService {
         Athlete athlete = new Athlete(athleteId, athleteName, gender, age, team);
         athleteDao.insert(athlete);
     }
+
 }
 

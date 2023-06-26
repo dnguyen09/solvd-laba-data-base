@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.laba.lab5.mappers.EventMapperJava">
+
+    <select id="selectEventAthleteById" resultMap="EventAthleteResultMap">
+        select E.*, sports.sport_name, L.*, A.*, T.*
+        from events E
+        join events_athletes EA on EA.event_id = E.event_id
+        join athletes A on A.athlete_id = EA.athlete_id
+        join locations L on L.location_id = E.location_id
+        join sports on sports.sport_id = E.sport_id
+        join teams T on T.team_id = A.team_id
+        where E.event_id = #{id}
+    </select>
+
+    <select id="selectEventTeamById" resultMap="EventTeamResultMap">
+        select E.*, T.*, nations.nation_name from events E
+        join events_teams ET on ET.event_id = E.event_id
+        join teams T on T.team_id = ET.team_id
+        join nations on nations.nation_id = T.nation_id
+        where E.event_id = #{id}
+    </select>
+
+    <resultMap id="EventAthleteResultMap" type="com.solvd.laba.lab1.model.Event" autoMapping="false">
+        <id property="eventId" column="event_id"/>
+        <result property="eventName" column="event_name"/>
+        <result property="startDate" column="start_date"/>
+        <result property="endDate" column="end_date"/>
+        <association property="sport" resultMap="com.solvd.laba.lab5.mappers.SportMapperJava.sportResultMap"/>
+        <association property="location" resultMap="com.solvd.laba.lab5.mappers.LocationMapperJava.LocationResultMap"/>
+        <collection property="athletes" ofType="com.solvd.laba.lab1.model.Athlete"
+                    resultMap="com.solvd.laba.lab5.mappers.AthleteMapperJava.athleteResultMap"/>
+    </resultMap>
+
+    <resultMap id="EventTeamResultMap" type="com.solvd.laba.lab1.model.Event" autoMapping="false">
+        <id property="eventId" column="event_id"/>
+        <result property="eventName" column="event_name"/>
+        <result property="startDate" column="start_date"/>
+        <result property="endDate" column="end_date"/>
+        <association property="sport" resultMap="com.solvd.laba.lab5.mappers.SportMapperJava.sportResultMap"/>
+        <association property="location" resultMap="com.solvd.laba.lab5.mappers.LocationMapperJava.LocationResultMap"/>
+        <collection property="teams" ofType="com.solvd.laba.lab1.model.Team"
+                    resultMap="com.solvd.laba.lab5.mappers.TeamMapperJava.teamResultMap"/>
+    </resultMap>
+
+
+</mapper>

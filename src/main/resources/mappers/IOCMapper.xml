@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.solvd.laba.lab5.mappers.IOCMapperJava">
+
+    <select id="selectIOCbyId" resultMap="iocResultMap">
+        select * from international_olympic_commitee where IOC_id = #{id}
+    </select>
+
+    <resultMap id="iocResultMap" type="com.solvd.laba.lab1.model.InternationalOlympicCommitee" autoMapping="false">
+        <id property="iocId" column="IOC_id"/>
+        <result property="iocName" column="IOC_name"/>
+        <result property="president" column="president"/>
+        <result property="headQuarter" column="president"/>
+        <result property="yearEstablished" column="year_established"/>
+    </resultMap>
+</mapper>

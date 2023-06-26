@@ -55,7 +55,6 @@ public class Event {
 
     //constructors
 
-
     public Event(int eventId, String eventName, LocalDate startDate, LocalDate endDate, Sport sport, Location location, List<Team> teams) {
         this.eventId = eventId;
         this.eventName = eventName;

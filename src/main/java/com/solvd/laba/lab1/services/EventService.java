@@ -16,15 +16,11 @@ public class EventService {
         this.eventDao = new EventDaoImpl();
     }
 
-    public Event getTeam(int eventId) {
+    public Event getEventById(int eventId) {
         List<Team> team = teamDao.getTeamsByEventId(eventId);
         Event event = eventDao.getById(eventId);
 
         event.setTeams(team);
         return event;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new EventService().getTeam(8));
     }
 }
