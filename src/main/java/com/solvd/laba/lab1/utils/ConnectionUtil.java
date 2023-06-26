@@ -24,7 +24,7 @@ public class ConnectionUtil {
         }
     }
 
-    public static Connection getConnection() throws InterruptedException {
+    public static synchronized Connection getConnection() throws InterruptedException {
         if (!initialized) {
             initializeConnectionPool();
         } else if (connectionPool.size() < POOL_SIZE) {

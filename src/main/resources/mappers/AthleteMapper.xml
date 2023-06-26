@@ -21,6 +21,17 @@
         values (#{athleteId}, #{athleteName}, #{gender}, #{age}, #{team.teamId})
     </insert>
 
+    <update id="updateAthlete">
+        update athletes
+        set athlete_name = #{athleteName}, gender = #{gender}, age = #{age}, team_id = #{team.teamId}
+        where athlete_id = #{athleteId}
+    </update>
+
+    <delete id="deleteAthlete">
+        delete from athletes
+        where athlete_id = #{id}
+    </delete>
+
     <resultMap id="athleteResultMap" type="com.solvd.laba.lab1.model.Athlete" autoMapping="false">
         <id property="athleteId" column="athlete_id"/>
         <result property="athleteName" column="athlete_name"/>

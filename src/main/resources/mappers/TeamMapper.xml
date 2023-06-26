@@ -22,6 +22,17 @@
         values (#{teamId}, #{teamName}, #{nation.nationId}, #{hotel.hotelId})
     </insert>
 
+    <update id="updateTeam">
+        update teams
+        set team_name = #{teamName}, nation_id = #{nation.nationId}, hotel_id = #{hotel.hotelId}
+        where team_id = #{teamId}
+    </update>
+
+    <delete id="deleteTeam">
+        delete from teams
+        where team_id = #{id}
+    </delete>
+
     <resultMap id="teamResultMap" type="com.solvd.laba.lab1.model.Team" autoMapping="false">
         <id property="teamId" column="team_id"/>
         <result property="teamName" column="team_name"/>

@@ -2,6 +2,7 @@ package com.solvd.laba.lab1;
 
 import com.solvd.laba.lab1.daoImplementation.AthleteDaoImpl;
 import com.solvd.laba.lab1.model.Athlete;
+import com.solvd.laba.lab1.services.AthleteService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,6 +13,8 @@ public class Main {
         AthleteDaoImpl t = new AthleteDaoImpl();
         Athlete athelete = t.getById(17);
         LOGGER.info(athelete);
+
+        LOGGER.info(new AthleteService().getAthlete(6));
 
 //        HostCountryDaoImpl hcd = new HostCountryDaoImpl();
 //        List<HostCountry> hostCountries = hcd.getAll();

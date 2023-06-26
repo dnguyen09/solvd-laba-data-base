@@ -5,7 +5,9 @@ import com.solvd.laba.lab1.daoInterfaces.TeamDao;
 import com.solvd.laba.lab1.model.Hotel;
 import com.solvd.laba.lab1.model.Nation;
 import com.solvd.laba.lab1.model.Team;
+import com.solvd.laba.lab1.utils.ConnectionUtil;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,8 +43,8 @@ public class TeamDaoImpl extends DAOImpl<Team> implements TeamDao {
     @Override
     protected Team buildFromResultSet(ResultSet rs) throws SQLException {
         Team team = new Team();
-        team.setTeamId(rs.getInt(1));
-        team.setTeamName(rs.getString(2));
+        team.setTeamId(rs.getInt("team_id"));
+        team.setTeamName(rs.getString("team_name"));
 
         //create nation instance and set its properties
         Nation nation = new Nation();
@@ -70,28 +72,30 @@ public class TeamDaoImpl extends DAOImpl<Team> implements TeamDao {
     }
 
     @Override
-    public List<Team> getByTeamId(int teamId) {
-//        List<Team> list = new ArrayList<>();
-//
-//        //establish database connection and preparedStatement
-//        try (Connection con = ConnectionUtil.getConnection();
-//             PreparedStatement ps = con.prepareStatement("SELECT * FROM teams WHERE team_id = ?")) {
-//
-//            //adding value to ps
-//            ps.setInt(1, teamId);
-//
-//            //initialize resultSet
-//            ResultSet rs = ps.executeQuery();
-//
-//            //loop through rs
-//            while (rs.next()) {
-//                list.add(buildFromResultSet(rs));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return list;
-        return null;
+    public Team getTeamByAthleteId(int athleteId) {
+        Team team = new Team();
+        Connection con = null;
+        try {
+            con = ConnectionUtil.getConnection();
+
+            try (PreparedStatement statement = con.prepareStatement("select * from athletes a\n" +
+                    "join teams t on a.team_id = t.team_id\n" +
+                    "where a.athlete_id = ?")) {
+                statement.setInt(1, athleteId);
+                ResultSet rs = statement.executeQuery();
+                while (rs.next()) {
+                    team = buildFromResultSet(rs);
+                }
+            }
+        } catch (InterruptedException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (con != null) {
+                ConnectionUtil.releaseConnection(con);
+            }
+        }
+
+        return team;
     }
 
     @Override
