@@ -27,6 +27,8 @@
         <mapper resource="mappers/IOCMapper.xml"/>
         <mapper resource="mappers/LocationMapper.xml"/>
         <mapper resource="mappers/SportMapper.xml"/>
+        <mapper resource="mappers/ResultMapper.xml"/>
+
         <mapper resource="mappers/EventMapper.xml"/>
 
     </mappers>

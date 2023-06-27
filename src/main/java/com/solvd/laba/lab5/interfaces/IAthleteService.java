@@ -14,4 +14,6 @@ public interface IAthleteService {
     void updateAthlete(Athlete athlete);
 
     void deleteAthleteById(int id);
+
+    List<Athlete> selectAthleteByEventName(String eventName);
 }

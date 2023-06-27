@@ -15,4 +15,6 @@ public interface AthleteMapperJava {
 
     void deleteAthlete(int id);
 
+    List<Athlete> selectAthleteByEventName(String eventName);
+
 }

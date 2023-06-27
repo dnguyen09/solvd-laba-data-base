@@ -16,6 +16,13 @@
         select * from athletes;
     </select>
 
+    <select id="selectAthleteByEventName" resultMap="athleteResultMap">
+        select a.* , e.* from athletes a
+        left join events_athletes ea on ea.athlete_id = a.athlete_id
+        left join events e on e.event_id = ea.event_id
+        where e.event_name = #{eventName};
+    </select>
+
     <insert id="insertAthlete">
         insert into athletes (athlete_id, athlete_name, gender, age, team_id)
         values (#{athleteId}, #{athleteName}, #{gender}, #{age}, #{team.teamId})

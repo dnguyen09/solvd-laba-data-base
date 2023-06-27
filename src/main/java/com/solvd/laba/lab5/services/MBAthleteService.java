@@ -13,7 +13,7 @@ import java.util.function.Function;
 public class MBAthleteService implements IAthleteService {
     AthleteMapperJava athleteMapperJava;
 
-    private <T> T openSession(Function<AthleteMapperJava, T> action) {
+    private <T> T openAthleteSession(Function<AthleteMapperJava, T> action) {
         try (SqlSession sqlSession = MyBatisUtil.openSession()) {
             athleteMapperJava = MyBatisUtil.getMapper(sqlSession, AthleteMapperJava.class);
             return action.apply(athleteMapperJava);
@@ -25,17 +25,17 @@ public class MBAthleteService implements IAthleteService {
 
     @Override
     public Athlete selectById(int id) {
-        return openSession(mapper -> mapper.selectAthleteById(id));
+        return openAthleteSession(mapper -> mapper.selectAthleteById(id));
     }
 
     @Override
     public List<Athlete> selectAllAthlete() {
-        return openSession(AthleteMapperJava::selectAll);
+        return openAthleteSession(AthleteMapperJava::selectAll);
     }
 
     @Override
     public void insertAthlete(Athlete athlete) {
-        openSession(mapper -> {
+        openAthleteSession(mapper -> {
             mapper.insertAthlete(athlete);
             return null;
         });
@@ -43,7 +43,7 @@ public class MBAthleteService implements IAthleteService {
 
     @Override
     public void updateAthlete(Athlete athlete) {
-        openSession(mapper -> {
+        openAthleteSession(mapper -> {
             mapper.updateAthlete(athlete);
             return null;
         });
@@ -51,9 +51,14 @@ public class MBAthleteService implements IAthleteService {
 
     @Override
     public void deleteAthleteById(int id) {
-        openSession(mapper -> {
+        openAthleteSession(mapper -> {
             mapper.deleteAthlete(id);
             return null;
         });
+    }
+
+    @Override
+    public List<Athlete> selectAthleteByEventName(String eventName) {
+        return openAthleteSession(mapper -> mapper.selectAthleteByEventName(eventName));
     }
 }

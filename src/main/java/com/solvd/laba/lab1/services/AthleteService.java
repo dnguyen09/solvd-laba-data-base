@@ -55,5 +55,10 @@ public class AthleteService implements IAthleteService {
     public void deleteAthleteById(int id) {
         athleteDao.delete(id);
     }
+
+    @Override
+    public List<Athlete> selectAthleteByEventName(String eventName) {
+        return null;
+    }
 }
 
