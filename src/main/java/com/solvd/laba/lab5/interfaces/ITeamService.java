@@ -1,11 +1,10 @@
-package com.solvd.laba.lab5.mappers;
+package com.solvd.laba.lab5.interfaces;
 
-import com.solvd.laba.lab1.model.Athlete;
 import com.solvd.laba.lab1.model.Team;
 
 import java.util.List;
 
-public interface TeamMapperJava {
+public interface ITeamService {
     Team selectTeamById(int id);
 
     List<Team> selectAll();
@@ -14,6 +13,5 @@ public interface TeamMapperJava {
 
     void updateTeam(Team team);
 
-    void deleteTeam(int id);
-
+    void deleteTeamById(int id);
 }

@@ -46,5 +46,14 @@
                     resultMap="com.solvd.laba.lab5.mappers.TeamMapperJava.teamResultMap"/>
     </resultMap>
 
+    <resultMap id="eventResultMap" type="com.solvd.laba.lab1.model.Event" autoMapping="false">
+        <id property="eventId" column="event_id"/>
+        <result property="eventName" column="event_name"/>
+        <result property="startDate" column="start_date"/>
+        <result property="endDate" column="end_date"/>
+        <association property="sport" resultMap="com.solvd.laba.lab5.mappers.SportMapperJava.sportResultMap"/>
+        <association property="location" resultMap="com.solvd.laba.lab5.mappers.LocationMapperJava.LocationResultMap"/>
+    </resultMap>
+
 
 </mapper>

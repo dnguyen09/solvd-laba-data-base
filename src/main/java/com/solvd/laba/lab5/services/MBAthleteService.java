@@ -1,56 +1,64 @@
 package com.solvd.laba.lab5.services;
 
 import com.solvd.laba.lab1.model.Athlete;
-import com.solvd.laba.lab5.interfaces.MyBatisService;
+import com.solvd.laba.lab5.interfaces.IAthleteService;
 import com.solvd.laba.lab5.mappers.AthleteMapperJava;
 import com.solvd.laba.lab5.util.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
-public class MBAthleteService implements MyBatisService<Athlete> {
+public class MBAthleteService implements IAthleteService {
     AthleteMapperJava athleteMapperJava;
+
+    private <T> T openAthleteSession(Function<AthleteMapperJava, T> action) {
+        try (SqlSession sqlSession = MyBatisUtil.openSession()) {
+            athleteMapperJava = MyBatisUtil.getMapper(sqlSession, AthleteMapperJava.class);
+            return action.apply(athleteMapperJava);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     @Override
     public Athlete selectById(int id) {
-        Athlete athlete = new Athlete();
-
-        try (SqlSession sqlSession = MyBatisUtil.openSession()) {
-            athleteMapperJava = MyBatisUtil.getMapper(sqlSession, AthleteMapperJava.class);
-            athlete = athleteMapperJava.selectAthleteById(id);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return athlete;
+        return openAthleteSession(mapper -> mapper.selectAthleteById(id));
     }
 
     @Override
-    public List<Athlete> selectAll() {
-        List<Athlete> athleteList = new ArrayList<>();
-        try (SqlSession sqlSession = MyBatisUtil.openSession()) {
-
-            athleteMapperJava = MyBatisUtil.getMapper(sqlSession, AthleteMapperJava.class);
-            athleteList = athleteMapperJava.selectAll();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return athleteList;
+    public List<Athlete> selectAllAthlete() {
+        return openAthleteSession(AthleteMapperJava::selectAll);
     }
 
     @Override
-    public void insert(Athlete athlete) {
-        try (SqlSession sqlSession = MyBatisUtil.openSession()) {
-            athleteMapperJava = MyBatisUtil.getMapper(sqlSession, AthleteMapperJava.class);
-            athleteMapperJava.insertAthlete(athlete);
-            sqlSession.commit();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void insertAthlete(Athlete athlete) {
+        openAthleteSession(mapper -> {
+            mapper.insertAthlete(athlete);
+            return null;
+        });
     }
 
+    @Override
+    public void updateAthlete(Athlete athlete) {
+        openAthleteSession(mapper -> {
+            mapper.updateAthlete(athlete);
+            return null;
+        });
+    }
 
+    @Override
+    public void deleteAthleteById(int id) {
+        openAthleteSession(mapper -> {
+            mapper.deleteAthlete(id);
+            return null;
+        });
+    }
+
+    @Override
+    public List<Athlete> selectAthleteByEventName(String eventName) {
+        return openAthleteSession(mapper -> mapper.selectAthleteByEventName(eventName));
+    }
 }

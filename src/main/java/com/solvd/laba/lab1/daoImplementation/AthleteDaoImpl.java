@@ -4,10 +4,13 @@ import com.solvd.laba.lab1.dao.DAOImpl;
 import com.solvd.laba.lab1.daoInterfaces.AthleteDao;
 import com.solvd.laba.lab1.model.Athlete;
 import com.solvd.laba.lab1.model.Team;
+import com.solvd.laba.lab1.utils.ConnectionUtil;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AthleteDaoImpl extends DAOImpl<Athlete> implements AthleteDao {
@@ -73,27 +76,34 @@ public class AthleteDaoImpl extends DAOImpl<Athlete> implements AthleteDao {
     @Override
     public List<Athlete> getByTeamId(int teamId) {
 
-//        List<Athlete> list = new ArrayList<>();
-//
-//        //establish database connection and preparedStatement
-//        try (Connection con = ConnectionUtil.getConnection();
-//             PreparedStatement ps = con.prepareStatement("SELECT * FROM athletes WHERE team_id = ?")) {
-//
-//            //adding value to ps
-//            ps.setInt(1, teamId);
-//
-//            //initialize resultSet
-//            ResultSet rs = ps.executeQuery();
-//
-//            //loop through rs
-//            while (rs.next()) {
-//
-//                list.add(buildFromResultSet(rs));
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return list;
-        return null;
+        List<Athlete> list = new ArrayList<>();
+
+        //establish database connection and preparedStatement
+        Connection con = null;
+        try {
+            con = ConnectionUtil.getConnection();
+            try (PreparedStatement ps = con.prepareStatement("SELECT * FROM athletes WHERE team_id = ?")) {
+
+                //adding value to ps
+                ps.setInt(1, teamId);
+
+                //initialize resultSet
+                ResultSet rs = ps.executeQuery();
+
+                //loop through rs
+                while (rs.next()) {
+
+                    list.add(buildFromResultSet(rs));
+                }
+            }
+
+        } catch (SQLException | InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            if (con != null) {
+                ConnectionUtil.releaseConnection(con);
+            }
+        }
+        return list;
     }
 }

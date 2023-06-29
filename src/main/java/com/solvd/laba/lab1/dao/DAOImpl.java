@@ -88,12 +88,12 @@ public abstract class DAOImpl<T> implements DAO<T> {
 
     @Override
     public int update(T entity) {
-
+        Connection con = null;
         int result = 0;
 
         //establish database connection and preparedStatement
         try {
-            Connection con = ConnectionUtil.getConnection();
+            con = ConnectionUtil.getConnection();
             try (PreparedStatement ps = con.prepareStatement(getUpdateSQL())) {
 
                 //call method
@@ -103,6 +103,8 @@ public abstract class DAOImpl<T> implements DAO<T> {
             }
         } catch (SQLException | InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            ConnectionUtil.releaseConnection(con);
         }
         return result;
     }

@@ -1,20 +1,19 @@
-package com.solvd.laba.lab5.mappers;
+package com.solvd.laba.lab5.interfaces;
 
 import com.solvd.laba.lab1.model.Athlete;
 
 import java.util.List;
 
-public interface AthleteMapperJava {
-    Athlete selectAthleteById(int id);
+public interface IAthleteService {
+    Athlete selectById(int id);
 
-    List<Athlete> selectAll();
+    List<Athlete> selectAllAthlete();
 
     void insertAthlete(Athlete athlete);
 
     void updateAthlete(Athlete athlete);
 
-    void deleteAthlete(int id);
+    void deleteAthleteById(int id);
 
     List<Athlete> selectAthleteByEventName(String eventName);
-
 }

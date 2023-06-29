@@ -69,9 +69,9 @@ public class Result {
         return "Result{" +
                 "resultId=" + resultId +
                 ", medal=" + medal +
-                ", event=" + event.getEventId() +
-                ", athlete=" + athlete.getAthleteId() +
-                ", Team=" + (team != null ? team.getTeamId() : "NULL") +
+                ", event=" + event +
+                ", athlete=" + athlete +
+                ", Team=" + team +
                 '}' + "\n";
     }
 }
