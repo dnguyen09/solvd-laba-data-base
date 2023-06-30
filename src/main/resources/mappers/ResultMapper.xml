@@ -21,6 +21,15 @@
         left join teams T on T.team_id = R.team_id;
     </select>
 
+    <select id="selectResultByEventId" resultMap="resultResultMap">
+        select * from results r
+        join athletes a on a.athlete_id = r.athlete_id
+        join teams t on t.team_id = a.team_id
+        join nations n on n.nation_id = t.nation_id
+        join events e on e.event_id = r.event_id
+        where r.event_id = #{event.eventId}
+    </select>
+
     <insert id="insertResult">
         insert into results (result_id, medal, event_id, athlete_id, team_id)
         values (#{resultId}, #{medal}, #{event.eventId}, #{athlete.athleteId}, #{team.teamId})
@@ -30,6 +39,12 @@
         update results
         set medal = #{medal}, event_id = #{event.eventId}, athlete_id = #{athlete.athleteId}, team_id = #{team.teamId}
         where result_id = #{resultId}
+    </update>
+
+    <update id="updateMedalByAthleteId">
+        update results
+        set medal = #{medal}
+        where athlete_id = #{athlete.athleteId}
     </update>
 
     <delete id="deleteResult">

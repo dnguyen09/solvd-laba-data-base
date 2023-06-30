@@ -1,8 +1,8 @@
 package com.solvd.laba.lab5;
 
-import com.solvd.laba.lab1.model.Athlete;
 import com.solvd.laba.lab5.factory.MyBatisServiceFactory;
 import com.solvd.laba.lab5.interfaces.IAthleteService;
+import com.solvd.laba.lab5.interfaces.IResultService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,28 +10,31 @@ public class MyBatisRunner {
     private static final Logger LOGGER = LogManager.getLogger(MyBatisRunner.class);
 
     public static void main(String[] args) {
-//        MyBatisServiceFactory myBatisServiceFactory = new MyBatisServiceFactory();
-//        IResultService mbResultService = myBatisServiceFactory.pickResultService("mybatis");
+        MyBatisServiceFactory myBatisServiceFactory = new MyBatisServiceFactory();
+        IResultService mbResultService = myBatisServiceFactory.pickResultService("mybatis");
 //        LOGGER.info(mbResultService.selectAllResult());
 
+//        Result result = new Result(Medal.BRONZE, new Athlete(19));
+//        mbResultService.updateMedalByAthleteId(result);
 
-        MyBatisServiceFactory myBatisServiceFactory = new MyBatisServiceFactory();
+
+//        MyBatisServiceFactory myBatisServiceFactory = new MyBatisServiceFactory();
 //        IAthleteService athleteServiceDao = myBatisServiceFactory.pickAthleteService("dao");
 //        LOGGER.info(athleteServiceDao.selectAllAthlete());
 //
         IAthleteService mbAthleteService = myBatisServiceFactory.pickAthleteService("mybatis");
-//        LOGGER.info(mbAthleteService.selectAthleteByEventName("sprint 100m"));
+        LOGGER.info(mbAthleteService.selectAthleteByEventName("sprint 100m"));
 
         LOGGER.info(mbAthleteService.selectAllAthlete());
 
-        Athlete athlete19 = new Athlete(19, "Armando Mendez", "male", 35, new Team(5));
-        mbAthleteService.insertAthlete(athlete19);
+//        Athlete athlete19 = new Athlete(19, "Chika Mendez", "female", 32, new Team(10));
+//        mbAthleteService.insertAthlete(athlete19);
 //
 //
-        Athlete athlete19Updated = new Athlete(19, "Armando Mendez", "male", 35, new Team(11));
-        mbAthleteService.updateAthlete(athlete19Updated);
+//        Athlete athlete19Updated = new Athlete(19, "Armando Mendez", "male", 35, new Team(11));
+//        mbAthleteService.updateAthlete(athlete19Updated);
 //
-        mbAthleteService.deleteAthleteById(19);
+//        mbAthleteService.deleteAthleteById(19);
 //
 //        ITeamService teamServiceDao = myBatisServiceFactory.pickTeamService("dao");
 //        LOGGER.info(teamServiceDao.selectTeamById(8));

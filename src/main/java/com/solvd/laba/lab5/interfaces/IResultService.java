@@ -14,4 +14,8 @@ public interface IResultService {
     void updateResult(Result result);
 
     void deleteResult(int id);
+
+    void updateMedalByAthleteId(Result result);
+
+    List<Result> selectResultByEventId(int eventId);
 }

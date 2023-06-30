@@ -17,9 +17,11 @@
     </select>
 
     <select id="selectAthleteByEventName" resultMap="athleteResultMap">
-        select a.* , e.* from athletes a
+        select a.* , t.*, n.*, e.* from athletes a
         left join events_athletes ea on ea.athlete_id = a.athlete_id
         left join events e on e.event_id = ea.event_id
+        join teams t on t.team_id = a.team_id
+        join nations n on n.nation_id = t.nation_id
         where e.event_name = #{eventName};
     </select>
 

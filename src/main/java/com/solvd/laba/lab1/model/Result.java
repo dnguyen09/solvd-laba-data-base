@@ -22,6 +22,12 @@ public class Result {
     public Result() {
     }
 
+    public Result(Medal medal, Athlete athlete) {
+        this.medal = medal;
+        this.athlete = athlete;
+    }
+
+
     //getters and setters
 
     public int getResultId() {

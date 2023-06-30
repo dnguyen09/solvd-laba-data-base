@@ -8,57 +8,82 @@ import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.function.Function;
 
 public class MBAthleteService implements IAthleteService {
     AthleteMapperJava athleteMapperJava;
 
-    private <T> T openAthleteSession(Function<AthleteMapperJava, T> action) {
-        try (SqlSession sqlSession = MyBatisUtil.openSession()) {
-            athleteMapperJava = MyBatisUtil.getMapper(sqlSession, AthleteMapperJava.class);
-            return action.apply(athleteMapperJava);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     @Override
     public Athlete selectById(int id) {
-        return openAthleteSession(mapper -> mapper.selectAthleteById(id));
+        Athlete athlete = null;
+
+        try (SqlSession sqlSession = MyBatisUtil.openSession()) {
+            athleteMapperJava = MyBatisUtil.getMapper(sqlSession, AthleteMapperJava.class);
+            athlete = athleteMapperJava.selectAthleteById(id);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return athlete;
     }
 
     @Override
     public List<Athlete> selectAllAthlete() {
-        return openAthleteSession(AthleteMapperJava::selectAll);
+        List<Athlete> athletes = null;
+
+        try (SqlSession sqlSession = MyBatisUtil.openSession()) {
+            athleteMapperJava = MyBatisUtil.getMapper(sqlSession, AthleteMapperJava.class);
+            athletes = athleteMapperJava.selectAll();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return athletes;
     }
 
     @Override
     public void insertAthlete(Athlete athlete) {
-        openAthleteSession(mapper -> {
-            mapper.insertAthlete(athlete);
-            return null;
-        });
+        try (SqlSession sqlSession = MyBatisUtil.openSession()) {
+            athleteMapperJava = MyBatisUtil.getMapper(sqlSession, AthleteMapperJava.class);
+            athleteMapperJava.insertAthlete(athlete);
+            sqlSession.commit();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void updateAthlete(Athlete athlete) {
-        openAthleteSession(mapper -> {
-            mapper.updateAthlete(athlete);
-            return null;
-        });
+        try (SqlSession sqlSession = MyBatisUtil.openSession()) {
+            athleteMapperJava = MyBatisUtil.getMapper(sqlSession, AthleteMapperJava.class);
+            athleteMapperJava.updateAthlete(athlete);
+            sqlSession.commit();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void deleteAthleteById(int id) {
-        openAthleteSession(mapper -> {
-            mapper.deleteAthlete(id);
-            return null;
-        });
+        try (SqlSession sqlSession = MyBatisUtil.openSession()) {
+            athleteMapperJava = MyBatisUtil.getMapper(sqlSession, AthleteMapperJava.class);
+            athleteMapperJava.deleteAthlete(id);
+            sqlSession.commit();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public List<Athlete> selectAthleteByEventName(String eventName) {
-        return openAthleteSession(mapper -> mapper.selectAthleteByEventName(eventName));
+        List<Athlete> athletes = null;
+
+        try (SqlSession sqlSession = MyBatisUtil.openSession()) {
+            athleteMapperJava = MyBatisUtil.getMapper(sqlSession, AthleteMapperJava.class);
+            athletes = athleteMapperJava.selectAthleteByEventName(eventName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return athletes;
     }
 }

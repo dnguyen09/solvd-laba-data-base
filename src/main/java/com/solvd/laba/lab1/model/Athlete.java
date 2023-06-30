@@ -34,6 +34,10 @@ public class Athlete {
 
     }
 
+    public Athlete(int athleteId) {
+        this.athleteId = athleteId;
+    }
+
     //getters and setters
 
     public int getAthleteId() {

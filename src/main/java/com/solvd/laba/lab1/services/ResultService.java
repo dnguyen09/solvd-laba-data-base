@@ -30,4 +30,15 @@ public class ResultService implements IResultService {
     public void deleteResult(int id) {
 
     }
+
+    @Override
+    public void updateMedalByAthleteId(Result result) {
+
+    }
+
+    @Override
+    public List<Result> selectResultByEventId(int eventId) {
+        return null;
+    }
+
 }
